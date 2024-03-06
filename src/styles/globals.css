@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
+}
+
+body {
+	position: relative;
+	zindex: 0;
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(
+			to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))
+		)
+		rgb(var(--background-start-rgb));
+}
+.layout {
+	background: radial-gradient(
+		circle at 50% 50%,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 0.28) 100%
+	);
+	/* background-color: rgba(0, 0, 0, 0.3); */
+	z-index: 3;
+}
+.swiper-button-prev,
+.swiper-button-next {
+	transition: all 0.5s;
+	zindex: 35;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.swiper-button-prev:hover::after,
+.swiper-button-next:hover::after {
+	color: rgb(255, 255, 255);
+}
