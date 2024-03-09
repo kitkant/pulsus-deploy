@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 import Image from 'next/image'
 import { useState } from 'react'
 import Cookies from 'universal-cookie'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 const Welcome = () => {
 	const cookies = new Cookies(null, { path: '/' })
@@ -63,9 +65,13 @@ const Welcome = () => {
 		}
 	}
 
+	useGSAP(() => {
+		gsap.to('.box', { opacity: '1', duration: 3, delay: 4 })
+	})
+
 	return (
-		<Wrapper className='text-3xl flex gap-[10px] items-center'>
-			<span className='text-5xl'>{timeOfDay},</span>
+		<Wrapper className='text-3xl flex gap-[10px] items-center mt-[10px] box'>
+			<TimeOfDay className='text-5xl'>{timeOfDay},</TimeOfDay>
 			<span className='text-5xl'>
 				{statusEdit ? (
 					<Input
@@ -119,8 +125,24 @@ const Input = styled.input`
 	text-align: center;
 	transition: border-color 0.2s ease;
 	line-height: 1;
+	&::placeholder {
+		font-size: 34px;
+	}
+	@media (max-width: 1440px) {
+		min-width: 1em;
+		max-width: 5em;
+		&::placeholder {
+			font-size: 28px;
+		}
+	}
+`
+const TimeOfDay = styled.span`
+	@media (max-width: 1440px) {
+		font-size: 42px;
+	}
 `
 const Wrapper = styled.div`
+	opacity: 0;
 	transition: all 0.2s ease;
 	&:hover {
 		.btnWelcome {

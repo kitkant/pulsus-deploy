@@ -6,7 +6,7 @@ import useSound from 'use-sound'
 const ButtonSound = () => {
 	const [playToggle, setPlayToggle] = useState(false)
 	const [play, { stop }] = useSound('/sound/song.mp3', {
-		volume: 0.05,
+		volume: 0.2,
 		interrupt: true,
 	})
 
@@ -18,7 +18,7 @@ const ButtonSound = () => {
 			setTimeout(() => {
 				stop()
 				setPlayToggle(false)
-			}, 155000)
+			}, 136000)
 		}
 		setPlayToggle(!playToggle)
 	}

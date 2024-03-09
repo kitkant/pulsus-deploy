@@ -1,15 +1,20 @@
 import Loader from '@/features/Loader/Loader'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import Router from 'next/router'
+import localFont from 'next/font/local'
 import { useEffect, useState } from 'react'
+
+
+const myFont = localFont({ src: './fonts/gilroy-regular.ttf' })
+const arial = localFont({ src: './fonts/Arial-MT.woff' })
+
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [isLoading, setIsLoading] = useState(true)
 	const timerId = setTimeout(() => {
 		setIsLoading(false)
 	}, 5500)
-
+	
 	// useEffect(() => {
 	// 	console.log(isLoading)
 	// 	const handleStart = () => {
@@ -32,13 +37,16 @@ export default function App({ Component, pageProps }: AppProps) {
 	// }, [])
 
 	// останавливаем таймер
-
+	
+	
 	return (
 		<div className='h-screen'>
 			{isLoading ? (
 				<Loader /> // Здесь может быть ваш кастомный прелоадер
 			) : (
-				<Component {...pageProps} />
+				<main className={myFont.className}>
+      <Component {...pageProps} />
+    </main>
 			)}
 		</div>
 	)
